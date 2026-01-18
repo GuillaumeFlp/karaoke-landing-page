@@ -22,10 +22,10 @@ epics:
     stories:
       1-1-project-setup-astro-5:
         title: "Project Setup Astro 5"
-        status: review
+        status: done
         story_file: "_bmad-output/implementation-artifacts/1-1-project-setup-astro-5.md"
         started_at: "2026-01-18"
-        completed_at: null
+        completed_at: "2026-01-18"
       1-2-layout-core-components:
         title: "Layout Core Components"
         status: backlog

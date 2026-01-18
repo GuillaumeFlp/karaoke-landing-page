@@ -1,6 +1,6 @@
 # Story 1.1: Project Setup Astro 5
 
-Status: review
+Status: done
 
 ## Story
 
@@ -315,3 +315,4 @@ Claude Opus 4.5 (claude-opus-4-5-20251101)
 |------|--------|--------|
 | 2026-01-18 | Story created with comprehensive context | create-story workflow |
 | 2026-01-18 | Implementation completed - all ACs satisfied except git/Vercel (user action) | dev-story workflow |
+| 2026-01-18 | Code review fixes applied: accordion keyframes, i18n config, fonts, semantic HTML, viewport meta, React hooks ESLint, .prettierignore | code-review workflow |

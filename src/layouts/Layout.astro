@@ -7,20 +7,38 @@ interface Props {
 }
 
 const { title, description = 'Karaoke landing page' } = Astro.props;
+const currentLocale = Astro.currentLocale || 'fr';
+
+// i18n for skip link
+const skipLinkText: Record<string, string> = {
+  fr: 'Aller au contenu principal',
+  en: 'Skip to main content',
+  es: 'Ir al contenido principal',
+};
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#3b82f6" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+
+    <!-- Google Fonts - Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{title}</title>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <a href="#main-content" class="skip-link">{skipLinkText[currentLocale]}</a>
     <slot />
   </body>
 </html>
