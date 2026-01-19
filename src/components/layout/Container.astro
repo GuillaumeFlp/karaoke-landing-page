@@ -1,0 +1,26 @@
+---
+/**
+ * Container component for centering content with responsive padding
+ * Supports size variants: narrow, default, wide
+ */
+type ContainerSize = 'narrow' | 'default' | 'wide';
+
+interface Props {
+  size?: ContainerSize;
+  class?: string;
+}
+
+const { size = 'default', class: className } = Astro.props;
+
+const sizeClasses: Record<ContainerSize, string> = {
+  narrow: 'max-w-3xl', // 768px
+  default: 'max-w-6xl', // 1152px
+  wide: 'max-w-7xl', // 1280px
+};
+---
+
+<div
+  class:list={['mx-auto w-full px-4 sm:px-6 lg:px-8', sizeClasses[size], className]}
+>
+  <slot />
+</div>

@@ -148,7 +148,7 @@ HERO_CTA_PRIMARY
 ```astro
 ---
 // In .astro frontmatter
-import { useTranslations } from '@/i18n/utils';
+import { useTranslations } from '@/i18n';
 const t = useTranslations(Astro.currentLocale);
 ---
 

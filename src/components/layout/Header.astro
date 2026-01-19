@@ -1,0 +1,80 @@
+---
+/**
+ * Header component with logo, navigation, language switcher, and mobile menu
+ * Sticky positioning with scroll-based shadow effect
+ */
+import { useTranslations } from '@/i18n';
+import Navigation from '@/components/shared/Navigation';
+import LanguageSwitcher from '@/components/shared/LanguageSwitcher';
+
+const currentLocale = Astro.currentLocale || 'fr';
+const locales = ['fr', 'en', 'es'];
+const currentPath = Astro.url.pathname;
+const t = useTranslations(currentLocale);
+
+// Navigation links for anchor navigation
+const navLinks = [
+  { href: '#hero', label: t('nav.hero') },
+  { href: '#features', label: t('nav.features') },
+  { href: '#pricing', label: t('nav.pricing') },
+  { href: '#faq', label: t('nav.faq') },
+  { href: '#contact', label: t('nav.contact') },
+];
+---
+
+<header
+  id="main-header"
+  class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur transition-shadow duration-200 supports-[backdrop-filter]:bg-background/60"
+>
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <!-- Logo -->
+    <a
+      href={`/${currentLocale}/`}
+      class="font-display text-xl font-bold text-primary-600 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    >
+      Karaoke
+    </a>
+
+    <!-- Navigation and Language Switcher container -->
+    <div class="flex items-center gap-2">
+      <!-- Navigation (React island for interactivity) -->
+      <Navigation
+        client:load
+        links={navLinks}
+        menuOpenLabel={t('a11y.menuOpen')}
+        menuCloseLabel={t('a11y.menuClose')}
+      />
+
+      <!-- Language Switcher (React island for interactivity) -->
+      <LanguageSwitcher
+        client:load
+        currentLocale={currentLocale}
+        locales={locales}
+        currentPath={currentPath}
+        languageSwitchLabel={t('a11y.languageSwitch')}
+      />
+    </div>
+  </div>
+</header>
+
+<script>
+  // Add shadow to header on scroll
+  const header = document.getElementById('main-header');
+  const SCROLL_THRESHOLD = 50;
+
+  function updateHeaderShadow() {
+    if (header) {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    }
+  }
+
+  // Initial check
+  updateHeaderShadow();
+
+  // Listen for scroll
+  window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+</script>

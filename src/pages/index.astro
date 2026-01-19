@@ -1,35 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Button } from '@/components/ui';
+/**
+ * Root page redirect
+ * Redirects to the default locale (French)
+ */
+return Astro.redirect('/fr/');
 ---
-
-<Layout title="Karaoke Landing Page" description="Chantez. Jouez. Vibrez.">
-  <main id="main-content" class="min-h-screen bg-background">
-    <div class="container mx-auto px-4 py-16">
-      <h1 class="text-4xl font-bold text-foreground mb-4 font-display">
-        Karaoke Landing Page
-      </h1>
-      <p class="text-lg text-muted-500 mb-8">
-        Project setup complete. Ready for development.
-      </p>
-
-      <div class="flex gap-4">
-        <Button client:load>Primary Button</Button>
-        <Button client:load variant="secondary">Secondary Button</Button>
-        <Button client:load variant="outline">Outline Button</Button>
-      </div>
-
-      <div class="mt-8 p-4 bg-muted-100 rounded-lg">
-        <h2 class="text-xl font-semibold mb-2">Setup Checklist</h2>
-        <ul class="space-y-2 text-muted-600">
-          <li>✅ Astro 5 initialized</li>
-          <li>✅ TypeScript strict mode</li>
-          <li>✅ Tailwind CSS 4 configured</li>
-          <li>✅ shadcn/ui components installed</li>
-          <li>✅ Design tokens configured</li>
-          <li>✅ ESLint & Prettier configured</li>
-        </ul>
-      </div>
-    </div>
-  </main>
-</Layout>

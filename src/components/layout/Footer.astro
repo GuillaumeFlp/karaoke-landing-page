@@ -1,0 +1,54 @@
+---
+/**
+ * Footer component with legal links and social media placeholder
+ * Responsive layout: stacked on mobile, horizontal on desktop
+ */
+import { useTranslations } from '@/i18n';
+
+const currentLocale = Astro.currentLocale || 'fr';
+const currentYear = new Date().getFullYear();
+const t = useTranslations(currentLocale);
+---
+
+<footer class="border-t border-border bg-muted-50">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+    <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
+      <!-- Logo and copyright -->
+      <div class="flex flex-col items-center gap-2 md:items-start">
+        <a
+          href={`/${currentLocale}/`}
+          class="font-display text-lg font-bold text-primary-600 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:rounded-sm"
+        >
+          Karaoke
+        </a>
+        <p class="text-sm text-muted-500">
+          © {currentYear} Karaoke. {t('footer.copyright')}
+        </p>
+      </div>
+
+      <!-- Legal navigation -->
+      <nav class="flex flex-wrap justify-center gap-4 text-sm md:gap-6" aria-label="Footer navigation">
+        <a
+          href={`/${currentLocale}/mentions-legales`}
+          class="text-muted-500 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:rounded-sm"
+        >
+          {t('footer.legal')}
+        </a>
+        <a
+          href={`/${currentLocale}/cgv`}
+          class="text-muted-500 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:rounded-sm"
+        >
+          {t('footer.terms')}
+        </a>
+        <a
+          href={`/${currentLocale}/confidentialite`}
+          class="text-muted-500 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:rounded-sm"
+        >
+          {t('footer.privacy')}
+        </a>
+      </nav>
+
+      <!-- Social links will be added in Story 6.6 -->
+    </div>
+  </div>
+</footer>

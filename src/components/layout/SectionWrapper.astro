@@ -1,0 +1,24 @@
+---
+/**
+ * SectionWrapper component for wrapping page sections
+ * Supports background variants and anchor link IDs
+ */
+interface Props {
+  variant?: 'default' | 'muted' | 'primary' | 'gradient';
+  id?: string;
+  class?: string;
+}
+
+const { variant = 'default', id, class: className } = Astro.props;
+
+const variantClasses: Record<string, string> = {
+  default: '',
+  muted: 'bg-muted-50',
+  primary: 'bg-primary-50',
+  gradient: 'bg-gradient-to-br from-primary-50 to-secondary-50',
+};
+---
+
+<section id={id} class:list={['py-16 md:py-24', variantClasses[variant], className]}>
+  <slot />
+</section>
