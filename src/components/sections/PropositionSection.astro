@@ -1,0 +1,55 @@
+---
+/**
+ * PropositionSection - Presents the 3 platform modes
+ * Karaoke, Blind Test, Quiz
+ * Communicates "more than just karaoke" value proposition
+ */
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import Container from '@/components/layout/Container.astro';
+import ModeCard from '@/components/shared/ModeCard.astro';
+import { useTranslations } from '@/i18n';
+
+const currentLocale = Astro.currentLocale || 'fr';
+const t = useTranslations(currentLocale);
+
+const modes = [
+  {
+    icon: 'karaoke' as const,
+    title: t('proposition.modes.karaoke.title'),
+    description: t('proposition.modes.karaoke.description'),
+  },
+  {
+    icon: 'blindtest' as const,
+    title: t('proposition.modes.blindtest.title'),
+    description: t('proposition.modes.blindtest.description'),
+  },
+  {
+    icon: 'quiz' as const,
+    title: t('proposition.modes.quiz.title'),
+    description: t('proposition.modes.quiz.description'),
+  },
+];
+---
+
+<SectionWrapper variant="muted" id="features">
+  <Container>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        {t('proposition.title')}
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+        {t('proposition.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {modes.map((mode) => (
+        <ModeCard
+          icon={mode.icon}
+          title={mode.title}
+          description={mode.description}
+        />
+      ))}
+    </div>
+  </Container>
+</SectionWrapper>

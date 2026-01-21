@@ -48,4 +48,33 @@ export const en: TranslationSchema = {
     en: 'English',
     es: 'Español',
   },
+  proposition: {
+    title: 'More than karaoke',
+    subtitle:
+      'A complete entertainment platform for all your events. Karaoke, Blind Test, Quiz: three experiences, one application.',
+    modes: {
+      karaoke: {
+        title: 'Karaoke',
+        description:
+          'Thousands of songs to sing solo or in groups. Synchronized lyrics, real-time scoring.',
+      },
+      blindtest: {
+        title: 'Blind Test',
+        description:
+          'Test your music knowledge with friends. Dozens of themed playlists.',
+      },
+      quiz: {
+        title: 'Music Quiz',
+        description:
+          'Various questions about artists, lyrics and music history.',
+      },
+    },
+  },
+  ctaFinal: {
+    title: 'Ready to host your next party?',
+    subtitle:
+      'Join thousands of users who transform their events into unforgettable moments.',
+    button: 'Try for free',
+    noCard: 'No credit card required • Cancel anytime',
+  },
 } as const;

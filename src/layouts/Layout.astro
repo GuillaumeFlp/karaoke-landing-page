@@ -7,9 +7,10 @@ import { useTranslations } from '@/i18n';
 interface Props {
   title: string;
   description?: string;
+  preloadHeroPoster?: boolean;
 }
 
-const { title, description = 'Karaoke landing page' } = Astro.props;
+const { title, description = 'Karaoke landing page', preloadHeroPoster = false } = Astro.props;
 const currentLocale = Astro.currentLocale || 'fr';
 const t = useTranslations(currentLocale);
 ---
@@ -31,6 +32,16 @@ const t = useTranslations(currentLocale);
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    {/* Preload hero poster for LCP optimization (NFR1: LCP < 2.5s) */}
+    {preloadHeroPoster && (
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-video-poster.webp"
+        fetchpriority="high"
+      />
+    )}
 
     <title>{title}</title>
   </head>

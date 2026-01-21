@@ -46,6 +46,35 @@ export const fr = {
     en: 'English',
     es: 'Español',
   },
+  proposition: {
+    title: 'Plus qu\'un karaoké',
+    subtitle:
+      'Une plateforme d\'animation complète pour tous vos événements. Karaoké, Blind Test, Quiz : trois expériences, une seule application.',
+    modes: {
+      karaoke: {
+        title: 'Karaoké',
+        description:
+          'Des milliers de titres pour chanter seul ou en groupe. Paroles synchronisées, scoring en temps réel.',
+      },
+      blindtest: {
+        title: 'Blind Test',
+        description:
+          'Testez vos connaissances musicales avec vos amis. Des dizaines de playlists thématiques.',
+      },
+      quiz: {
+        title: 'Quiz Musical',
+        description:
+          'Questions variées sur les artistes, les paroles et l\'histoire de la musique.',
+      },
+    },
+  },
+  ctaFinal: {
+    title: 'Prêt à animer votre prochaine soirée ?',
+    subtitle:
+      'Rejoignez des milliers d\'utilisateurs qui transforment leurs événements en moments inoubliables.',
+    button: 'Essayer gratuitement',
+    noCard: 'Sans carte bancaire • Annulez quand vous voulez',
+  },
 } as const;
 
 export type TranslationSchema = typeof fr;

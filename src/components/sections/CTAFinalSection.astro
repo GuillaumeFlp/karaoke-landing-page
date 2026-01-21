@@ -1,0 +1,68 @@
+---
+/**
+ * CTAFinalSection - Final call-to-action before footer
+ * Gradient background to attract attention
+ * Links to external SPA app
+ *
+ * @component
+ * @example
+ * <CTAFinalSection />
+ * <CTAFinalSection appUrl="https://app.yoursite.com" />
+ */
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import Container from '@/components/layout/Container.astro';
+import { useTranslations } from '@/i18n';
+
+interface Props {
+  appUrl?: string;
+  class?: string;
+}
+
+const {
+  appUrl = import.meta.env.PUBLIC_APP_URL || 'https://app.example.com',
+  class: className,
+} = Astro.props;
+
+const currentLocale = Astro.currentLocale || 'fr';
+const t = useTranslations(currentLocale);
+
+// Button classes (reuse pattern from HeroCTA)
+// Focus ring uses primary-700 for visibility on light gradient background
+const buttonBase =
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2';
+const sizeXl = 'h-14 px-10 text-lg';
+const primaryClasses = `${buttonBase} ${sizeXl} bg-primary-500 text-white shadow-lg hover:bg-primary-600`;
+---
+
+<SectionWrapper variant="gradient" id="cta" class={className}>
+  <Container>
+    <div class="py-8 text-center">
+      <h2 class="mb-4 text-3xl font-bold md:text-4xl">
+        {t('ctaFinal.title')}
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-lg text-muted-700">
+        {t('ctaFinal.subtitle')}
+      </p>
+
+      <a
+        href={appUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={primaryClasses}
+      >
+        {t('ctaFinal.button')}
+        <span class="sr-only">
+          {currentLocale === 'fr'
+            ? '(ouvre dans un nouvel onglet)'
+            : currentLocale === 'es'
+              ? '(abre en una nueva pestaña)'
+              : '(opens in a new tab)'}
+        </span>
+      </a>
+
+      <p class="mt-4 text-sm text-muted-700">
+        {t('ctaFinal.noCard')}
+      </p>
+    </div>
+  </Container>
+</SectionWrapper>

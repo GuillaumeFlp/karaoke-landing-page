@@ -1,0 +1,71 @@
+---
+/**
+ * HeroCTA component - Call-to-action buttons for the Hero section
+ * Primary CTA: External redirect to SPA app
+ * Secondary CTA: Smooth scroll to pricing section
+ *
+ * NOTE: Uses Tailwind classes directly instead of Button shadcn/ui component
+ * because asChild with Radix Slot doesn't work in non-hydrated Astro components.
+ * Classes match buttonVariants from button.tsx for consistency.
+ *
+ * @component
+ * @example
+ * <HeroCTA />
+ * <HeroCTA primaryUrl="https://app.yoursite.com" />
+ */
+import { useTranslations } from '@/i18n';
+
+interface Props {
+  primaryUrl?: string;
+  class?: string;
+}
+
+const {
+  primaryUrl = 'https://app.example.com', // TODO: Replace with actual app URL
+  class: className,
+} = Astro.props;
+
+const currentLocale = Astro.currentLocale || 'fr';
+const t = useTranslations(currentLocale);
+
+// Button base classes (from buttonVariants)
+// M3 FIX: Changed focus-visible:ring-ring to focus-visible:ring-white for visibility on dark background
+const buttonBase = 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50';
+
+// Size xl classes (h-14 = 56px, exceeds 44px touch target)
+const sizeXl = 'h-14 px-10 text-lg';
+
+// Primary variant classes
+const primaryClasses = `${buttonBase} ${sizeXl} bg-primary-500 text-white shadow hover:bg-primary-600 w-full sm:w-auto`;
+
+// Secondary/outline variant classes (customized for dark Hero background)
+const secondaryClasses = `${buttonBase} ${sizeXl} border border-white/50 bg-transparent text-white shadow-sm hover:bg-white/10 hover:text-white w-full sm:w-auto`;
+---
+
+<div
+  class:list={[
+    'flex flex-col items-center gap-4 sm:flex-row sm:justify-center',
+    className,
+  ]}
+>
+  {/* Primary CTA - External App Redirect */}
+  {/* M2 FIX: Added sr-only span to indicate external link opens in new tab */}
+  <a
+    href={primaryUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={primaryClasses}
+  >
+    {t('hero.cta.primary')}
+    <span class="sr-only">
+      {currentLocale === 'fr' ? '(ouvre dans un nouvel onglet)' :
+       currentLocale === 'es' ? '(abre en una nueva pestaña)' :
+       '(opens in a new tab)'}
+    </span>
+  </a>
+
+  {/* Secondary CTA - Scroll to Pricing */}
+  <a href="#pricing" class={secondaryClasses}>
+    {t('hero.cta.secondary')}
+  </a>
+</div>

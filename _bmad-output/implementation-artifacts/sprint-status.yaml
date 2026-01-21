@@ -17,7 +17,7 @@ epics:
   epic-1-fondation-navigation-core:
     title: "Fondation & Navigation Core"
     description: "Les utilisateurs peuvent naviguer sur une structure de landing page fonctionnelle en 3 langues avec un header sticky, des anchor links et un language switcher."
-    status: in-progress
+    status: done
     stories_count: 5
     stories:
       1-1-project-setup-astro-5:
@@ -50,44 +50,47 @@ epics:
         story_file: "_bmad-output/implementation-artifacts/1-5-language-switcher.md"
         started_at: "2026-01-19"
         completed_at: "2026-01-19"
-    retrospective: null
+    retrospective:
+      status: done
+      completed_at: "2026-01-19"
+      retro_file: "_bmad-output/implementation-artifacts/epic-1-retro-2026-01-19.md"
 
   epic-2-hero-proposition-valeur:
     title: "Hero & Proposition de Valeur"
     description: "Les utilisateurs atterrissent sur la page, comprennent l'offre en moins de 30 secondes grâce au Hero impactant et peuvent cliquer pour essayer l'application freemium."
-    status: backlog
+    status: done
     stories_count: 5
     stories:
       2-1-hero-section-base:
         title: "Hero Section Base"
-        status: backlog
-        story_file: null
-        started_at: null
-        completed_at: null
+        status: done
+        story_file: "_bmad-output/implementation-artifacts/2-1-hero-section-base.md"
+        started_at: "2026-01-19"
+        completed_at: "2026-01-19"
       2-2-song-ticker-component:
         title: "Song Ticker Component"
-        status: backlog
-        story_file: null
-        started_at: null
-        completed_at: null
+        status: done
+        story_file: "_bmad-output/implementation-artifacts/2-2-song-ticker-component.md"
+        started_at: "2026-01-19"
+        completed_at: "2026-01-19"
       2-3-hero-ctas:
         title: "Hero CTAs"
-        status: backlog
-        story_file: null
-        started_at: null
-        completed_at: null
+        status: done
+        story_file: "_bmad-output/implementation-artifacts/2-3-hero-ctas.md"
+        started_at: "2026-01-19"
+        completed_at: "2026-01-19"
       2-4-proposition-valeur-section:
         title: "Proposition de Valeur Section"
-        status: backlog
-        story_file: null
-        started_at: null
-        completed_at: null
+        status: done
+        story_file: "_bmad-output/implementation-artifacts/2-4-proposition-valeur-section.md"
+        started_at: "2026-01-19"
+        completed_at: "2026-01-19"
       2-5-cta-final-section:
         title: "CTA Final Section"
-        status: backlog
-        story_file: null
-        started_at: null
-        completed_at: null
+        status: done
+        story_file: "_bmad-output/implementation-artifacts/2-5-cta-final-section.md"
+        started_at: "2026-01-20"
+        completed_at: "2026-01-20"
     retrospective: null
 
   epic-3-decouverte-catalogue:

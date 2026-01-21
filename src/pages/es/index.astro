@@ -2,56 +2,29 @@
 import Layout from '../../layouts/Layout.astro';
 import Container from '@/components/layout/Container.astro';
 import SectionWrapper from '@/components/layout/SectionWrapper.astro';
-import { Button } from '@/components/ui';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import HeroCTA from '@/components/sections/HeroCTA.astro';
+import PropositionSection from '@/components/sections/PropositionSection.astro';
+import CTAFinalSection from '@/components/sections/CTAFinalSection.astro';
 import { useTranslations } from '@/i18n';
 
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<Layout title={t('meta.title')} description={t('meta.description')}>
+<Layout title={t('meta.title')} description={t('meta.description')} preloadHeroPoster>
   <!-- Hero Section -->
-  <SectionWrapper id="hero">
-    <Container>
-      <h1 class="mb-4 font-display text-4xl font-bold text-foreground md:text-5xl lg:text-6xl">
-        {t('hero.title')}
-      </h1>
-      <p class="mb-8 max-w-2xl text-lg text-muted-500 md:text-xl">
-        {t('hero.subtitle')}
-      </p>
+  <HeroSection>
+    <HeroCTA />
+  </HeroSection>
 
-      <div class="flex flex-wrap gap-4">
-        <Button client:load>{t('hero.cta.primary')}</Button>
-        <Button client:load variant="secondary">{t('hero.cta.secondary')}</Button>
-      </div>
-    </Container>
-  </SectionWrapper>
-
-  <!-- Features Section - Muted background -->
-  <SectionWrapper variant="muted" id="features">
-    <Container size="narrow">
-      <h2 class="mb-6 text-2xl font-semibold md:text-3xl">{t('demo.checklistTitle')}</h2>
-      <ul class="space-y-3 text-muted-600">
-        <li>✅ Astro 5 initialized</li>
-        <li>✅ TypeScript strict mode</li>
-        <li>✅ Tailwind CSS 4 configured</li>
-        <li>✅ shadcn/ui components installed</li>
-        <li>✅ Design tokens configured</li>
-        <li>✅ ESLint & Prettier configured</li>
-        <li>✅ Header component (sticky)</li>
-        <li>✅ Footer component (responsive)</li>
-        <li>✅ Container component (size variants)</li>
-        <li>✅ SectionWrapper component (background variants)</li>
-        <li>✅ i18n Configuration (Story 1.3)</li>
-        <li>✅ Navegación Sticky con Anchor Links (Story 1.4)</li>
-      </ul>
-    </Container>
-  </SectionWrapper>
+  <!-- Propuesta de Valor Section -->
+  <PropositionSection />
 
   <!-- Pricing Section Placeholder -->
   <SectionWrapper id="pricing">
     <Container>
       <h2 class="mb-4 text-2xl font-semibold md:text-3xl">{t('nav.pricing')}</h2>
-      <p class="text-muted-500">Sección Precios - Por implementar en Epic 4</p>
+      <p class="text-muted-500">Sección Precios - Epic 4</p>
     </Container>
   </SectionWrapper>
 
@@ -59,7 +32,7 @@ const t = useTranslations(Astro.currentLocale);
   <SectionWrapper variant="muted" id="faq">
     <Container>
       <h2 class="mb-4 text-2xl font-semibold md:text-3xl">{t('nav.faq')}</h2>
-      <p class="text-muted-500">Sección FAQ - Por implementar en Epic 5</p>
+      <p class="text-muted-500">Sección FAQ - Epic 5</p>
     </Container>
   </SectionWrapper>
 
@@ -67,7 +40,10 @@ const t = useTranslations(Astro.currentLocale);
   <SectionWrapper id="contact">
     <Container>
       <h2 class="mb-4 text-2xl font-semibold md:text-3xl">{t('nav.contact')}</h2>
-      <p class="text-muted-500">Sección Contacto - Por implementar en Epic 6</p>
+      <p class="text-muted-500">Sección Contacto - Epic 6</p>
     </Container>
   </SectionWrapper>
+
+  <!-- CTA Final Section -->
+  <CTAFinalSection />
 </Layout>

@@ -1,0 +1,106 @@
+---
+/**
+ * HeroSection component - Full-screen hero with video background
+ * Supports prefers-reduced-motion accessibility
+ *
+ * NOTE: This component intentionally does NOT use SectionWrapper because:
+ * 1. Full-screen (min-h-screen) conflicts with SectionWrapper's py-16/py-24 padding
+ * 2. Custom video/gradient background replaces SectionWrapper's bg variants
+ * 3. Requires absolute positioning for video layer which needs overflow-hidden
+ *
+ * @component
+ * @example
+ * <HeroSection />
+ * <HeroSection videoSrc="/videos/custom.mp4" posterSrc="/images/custom.webp" />
+ */
+import Container from '@/components/layout/Container.astro';
+import { SongTicker } from '@/components/shared/SongTicker';
+import { tickerSongs } from '@/data/ticker-songs';
+import { useTranslations } from '@/i18n';
+
+interface Props {
+  videoSrc?: string;
+  posterSrc?: string;
+  class?: string;
+}
+
+const {
+  videoSrc = '/videos/hero-loop.mp4',
+  posterSrc = '/images/hero-video-poster.webp',
+  class: className
+} = Astro.props;
+
+const currentLocale = Astro.currentLocale || 'fr';
+const t = useTranslations(currentLocale);
+
+// Video/poster are optional - pass empty string to disable and show gradient fallback
+// Default paths are placeholders; if files don't exist, video tag will fail silently
+// and gradient fallback provides acceptable visual (no broken image)
+const hasVideo = Boolean(videoSrc);
+const hasPoster = Boolean(posterSrc);
+---
+
+<section
+  id="hero"
+  class:list={[
+    'relative flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden',
+    className
+  ]}
+>
+  <!-- Background Layer -->
+  <div class="absolute inset-0">
+    {hasVideo ? (
+      <>
+        {/* Video Background - hidden when reduced-motion is preferred */}
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster={hasPoster ? posterSrc : undefined}
+          class="absolute inset-0 h-full w-full object-cover motion-safe:block motion-reduce:hidden"
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+
+        {/* Static Image Fallback - shown when reduced-motion is preferred */}
+        {hasPoster && (
+          <img
+            src={posterSrc}
+            alt=""
+            aria-hidden="true"
+            fetchpriority="high"
+            class="absolute inset-0 h-full w-full object-cover motion-safe:hidden motion-reduce:block"
+          />
+        )}
+      </>
+    ) : (
+      /* Gradient Fallback when no video provided */
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-600"></div>
+    )}
+
+    {/* Dark Overlay for text readability */}
+    <div class="absolute inset-0 bg-black/50"></div>
+  </div>
+
+  {/* Content Layer */}
+  <Container class="relative z-10 flex flex-col items-center justify-center py-20 text-center text-white">
+    <h1 class="mb-6 font-display text-4xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl">
+      {t('hero.title')}
+    </h1>
+    <p class="mb-8 max-w-2xl text-lg text-white/90 md:text-xl lg:text-2xl">
+      {t('hero.subtitle')}
+    </p>
+
+    {/* Slot for CTAs - will be added in Story 2.3 */}
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <slot />
+    </div>
+  </Container>
+
+  {/* Song Ticker - positioned at bottom of Hero */}
+  <div class="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-black/30 py-3">
+    <SongTicker client:visible songs={tickerSongs} locale={currentLocale} />
+  </div>
+</section>
